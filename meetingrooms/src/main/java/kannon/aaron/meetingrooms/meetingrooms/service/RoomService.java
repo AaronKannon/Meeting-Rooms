@@ -19,7 +19,7 @@ public class RoomService {
 
     public MessageResponseDTO createRoom(Room room) {
         Room savedRoom = roomRepository.save(room);
-        return createMessageResponse(savedRoom.getId(), "creating room with ID ");
+        return createMessageResponse(savedRoom, "creating room ");
     }
 
     public List<Room> listAll() {
@@ -32,24 +32,28 @@ public class RoomService {
         return room;
     }
 
-    public MessageResponseDTO updateById(Long id, Room room) throws RoomNotFoundException {
-        verifyIfExists(id);
-        Room updatedRoom = roomRepository.save(room);
-        return createMessageResponse(updatedRoom.getId(), "updating room with ID ");
+    public MessageResponseDTO updateRoom(Long id, Room room) throws RoomNotFoundException {
+        Room check = verifyIfExists(id);
+        check.setName(room.getName());
+        check.setDate(room.getDate());
+        check.setStartHour(room.getStartHour());
+        check.setEndHour(room.getEndHour());
+        Room updatedRoom = roomRepository.save(check);
+        return createMessageResponse(updatedRoom, "updating room ");
     }
 
     public MessageResponseDTO deleteById(Long id) throws RoomNotFoundException {
-        verifyIfExists(id);
+        Room room = verifyIfExists(id);
         roomRepository.deleteById(id);
-        return createMessageResponse(id, "deleting room with ID ");
+        return createMessageResponse(room, "deleting room ");
     }
 
     private Room verifyIfExists(Long id) throws RoomNotFoundException {
         return roomRepository.findById(id).orElseThrow(() -> new RoomNotFoundException(id));
     }
 
-    private MessageResponseDTO createMessageResponse(Long id, String s) {
-        return MessageResponseDTO.builder().message("Success in "+ s + id).build();
+    private MessageResponseDTO createMessageResponse(Room room, String s) {
+        return MessageResponseDTO.builder().message("Success in "+ s + room.toString()).build();
     }
 
 }

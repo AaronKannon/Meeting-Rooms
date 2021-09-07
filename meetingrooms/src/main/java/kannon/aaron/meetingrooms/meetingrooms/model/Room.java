@@ -23,6 +23,6 @@ public class Room {
     Long id;
     String name;
     String date;
-    String beginEvent;
-    String endEvent;
+    String startHour;
+    String endHour;
 }
