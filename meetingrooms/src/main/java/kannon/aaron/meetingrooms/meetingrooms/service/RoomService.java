@@ -1,5 +1,7 @@
 package kannon.aaron.meetingrooms.meetingrooms.service;
 
+import kannon.aaron.meetingrooms.meetingrooms.dto.MessageResponseDTO;
+import kannon.aaron.meetingrooms.meetingrooms.exception.RoomNotFoundException;
 import kannon.aaron.meetingrooms.meetingrooms.model.Room;
 import kannon.aaron.meetingrooms.meetingrooms.repository.RoomRepository;
 import lombok.AllArgsConstructor;
@@ -15,36 +17,35 @@ public class RoomService {
 
     private RoomRepository roomRepository;
 
-    public Room createRoom(Room room) {
-        Person savedPerson = personRepository.save(personToSave);
-        return createMessageResponse(savedPerson.getId(), "creating person with ID ");
+    public MessageResponseDTO createRoom(Room room) {
+        Room savedRoom = roomRepository.save(room);
+        return createMessageResponse(savedRoom.getId(), "creating room with ID ");
     }
 
-    public List<PersonDTO> listAll() {
-        List<Person> allPeople = personRepository.findAll();
-        return allPeople.stream().map(personMapper::toDTO).collect(Collectors.toList());
+    public List<Room> listAll() {
+        List<Room> allRoom = roomRepository.findAll();
+        return allRoom;
     }
 
-    public PersonDTO findById (Long id) throws PersonNotFoundException {
-        Person person = verifyIfExists(id);
-        return personMapper.toDTO(person);
+    public Room findById (Long id) throws RoomNotFoundException {
+        Room room = verifyIfExists(id);
+        return room;
     }
 
-    public MessageResponseDTO updateById(Long id, PersonDTO personDTO) throws PersonNotFoundException {
+    public MessageResponseDTO updateById(Long id, Room room) throws RoomNotFoundException {
         verifyIfExists(id);
-        Person personToUpdate = personMapper.toModel(personDTO);
-        Person updatedPerson = personRepository.save(personToUpdate);
-        return createMessageResponse(updatedPerson.getId(), "updating person with ID ");
+        Room updatedRoom = roomRepository.save(room);
+        return createMessageResponse(updatedRoom.getId(), "updating room with ID ");
     }
 
-    public MessageResponseDTO deleteById(Long id) throws PersonNotFoundException {
+    public MessageResponseDTO deleteById(Long id) throws RoomNotFoundException {
         verifyIfExists(id);
-        personRepository.deleteById(id);
-        return createMessageResponse(id, "deleting person with ID ");
+        roomRepository.deleteById(id);
+        return createMessageResponse(id, "deleting room with ID ");
     }
 
-    private Person verifyIfExists(Long id) throws PersonNotFoundException {
-        return personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException(id));
+    private Room verifyIfExists(Long id) throws RoomNotFoundException {
+        return roomRepository.findById(id).orElseThrow(() -> new RoomNotFoundException(id));
     }
 
     private MessageResponseDTO createMessageResponse(Long id, String s) {
