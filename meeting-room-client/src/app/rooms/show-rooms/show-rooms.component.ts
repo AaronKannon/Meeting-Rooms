@@ -9,7 +9,7 @@ import { Alert } from 'src/app/shared/models/alert';
 @Component({
   selector: 'app-show-rooms',
   templateUrl: './show-rooms.component.html',
-  styleUrls: ['./show-rooms.component.css']
+  styleUrls: ['./show-rooms.component.scss']
 })
 export class ShowRoomsComponent implements OnInit {
   readonly noPhoto = 'https://media.discordapp.net/attachments/269285072215998464/883426319084453938/image.png';
@@ -27,24 +27,24 @@ export class ShowRoomsComponent implements OnInit {
   }
 
   editRoom(): void {
-    this.router.navigateByUrl('/filmes/cadastro/' + this.id);
+    this.router.navigateByUrl('/rooms/create/' + this.id);
   }
 
   deleteRoom(): void {
     const config = {
       data: {
-        title: 'Você tem certeza que deseja excluir?',
-        description: 'Caso você tenha certceza que deseja excluir, clique no botão OK',
+        title: 'Are you sure that you want to delete the room?',
+        description: 'If you want that, click the button OK',
         colorBtnCancel: 'primary',
         colorBtnSuccess: 'warn',
         haveBtnCancel: true
       } as Alert
     };
     const dialogRef = this.dialog.open(AlertComponent, config);
-    dialogRef.afterClosed().subscribe((opcao: boolean) => {
-      if (opcao) {
+    dialogRef.afterClosed().subscribe((option: boolean) => {
+      if (option) {
         this.roomsService.deleteRoom(this.id)
-        .subscribe(() => this.router.navigateByUrl('/filmes'));
+        .subscribe(() => this.router.navigateByUrl('/rooms'));
       }
     });
   }

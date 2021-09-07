@@ -1,18 +1,20 @@
-<mat-list *ngIf="room; else noRoom">
-    <mat-list-item> Título: {{room.name}} </mat-list-item>
-    <mat-list-item> Data de lançamento: {{room.date}} </mat-list-item>
-    <mat-list-item> Gênero: {{room.startHour}} </mat-list-item>
-    <mat-list-item> Gênero: {{room.endHour}} </mat-list-item>
-    <mat-list-item class="break-line"> Descrição: {{room.description}} </mat-list-item>
-    <img mat-card-image [src]="room.urlPhoto || noPhoto">
-</mat-list>
-<mat-card>
-    <mat-card-actions>
-        <button color="accent" mat-raised-button (click)="editRoom()">Edit</button>
-        <button color="warn" mat-raised-button (click)="deleteRoom()">Delete</button>
-    </mat-card-actions>
-</mat-card>
+<div class="show-block">
+    <mat-list *ngIf="room; else noRoom">
+        <mat-list-item> Name: {{room.name}} </mat-list-item>
+        <mat-list-item> Date: {{room.date}} </mat-list-item>
+        <mat-list-item> Beginning: {{room.startHour}} </mat-list-item>
+        <mat-list-item> End: {{room.endHour}} </mat-list-item>
+        <mat-list-item class="break-line"> Description: {{room.description}} </mat-list-item>
+        <img mat-card-image [src]="room.urlPhoto || noPhoto">
+    </mat-list>
+    <mat-card>
+        <mat-card-actions>
+            <button color="accent" mat-raised-button (click)="editRoom()">Edit</button>
+            <button color="warn" mat-raised-button (click)="deleteRoom()">Delete</button>
+        </mat-card-actions>
+    </mat-card>
 
-<ng-template #noRoom>
-    <h1 class="full-width main-div">No room found!</h1>
-</ng-template>
+    <ng-template #noRoom>
+        <h1 class="full-width main-div">No room found!</h1>
+    </ng-template>
+</div>
