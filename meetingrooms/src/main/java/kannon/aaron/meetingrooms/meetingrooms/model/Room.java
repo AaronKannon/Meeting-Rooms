@@ -23,7 +23,7 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     String name;
-    Date date;
+    String date;
     String startHour;
     String endHour;
 }
