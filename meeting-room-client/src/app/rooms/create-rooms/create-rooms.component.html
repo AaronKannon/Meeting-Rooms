@@ -1,11 +1,11 @@
 <mat-toolbar class="app-title">Create Room</mat-toolbar>
 <div class="main-div">
-    <mat-card class="center width50">
-        <form autocomplete="off" novalidate [formGroup]="createdRoom" (ngSubmit)="save()" (ngReset)="restartForm()">
+    <mat-card class="center width50" *ngIf="createdRoom">
+        <form autocomplete="off" novalidate [formGroup]="createdRoom" (ngSubmit)="submit()" (ngReset)="restartForm()">
             <mat-card-content>
                 <app-input-text title="Room Name*" controlName="name" [formGroup]="createdRoom"></app-input-text>
                 <app-input-text title="Room Photo" controlName="urlPhoto" [formGroup]="createdRoom"></app-input-text>
-                <app-input-date title="Date" controlName="date" [formGroup]="createdRoom"></app-input-date>
+                <app-input-text title="Date" controlName="date" [formGroup]="createdRoom"></app-input-text>
                 <app-input-text title="Start Hour" controlName="startHour" [formGroup]="createdRoom"></app-input-text>
                 <app-input-text title="End Hour" controlName="endHour" [formGroup]="createdRoom"></app-input-text>
                 <app-input-textarea title="Description" controlName="description" [formGroup]="createdRoom"></app-input-textarea>

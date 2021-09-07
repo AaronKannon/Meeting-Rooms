@@ -11,6 +11,8 @@ import { MaterialModule } from './shared/material/material.module';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { RoomsModule } from './rooms/rooms.module';
+import { AlertComponent } from './shared/components/alert/alert.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -18,16 +20,19 @@ import { RoomsModule } from './rooms/rooms.module';
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     LayoutModule,
+    HttpClientModule,
     MaterialModule,
     AppRoutingModule,
     RoomsModule
   ],
+  entryComponents: [AlertComponent],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt' }],
   bootstrap: [AppComponent]
 })

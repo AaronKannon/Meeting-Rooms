@@ -35,9 +35,11 @@ public class RoomService {
     public MessageResponseDTO updateRoom(Long id, Room room) throws RoomNotFoundException {
         Room check = verifyIfExists(id);
         check.setName(room.getName());
+        check.setUrlPhoto(room.getUrlPhoto());
         check.setDate(room.getDate());
         check.setStartHour(room.getStartHour());
         check.setEndHour(room.getEndHour());
+        check.setDescription(room.getDescription());
         Room updatedRoom = roomRepository.save(check);
         return createMessageResponse(updatedRoom, "updating room ");
     }

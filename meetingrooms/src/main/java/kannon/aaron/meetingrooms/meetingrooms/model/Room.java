@@ -6,10 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -22,8 +19,14 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
+    @Column(nullable = false)
     String name;
+    String urlPhoto;
+    @Column(nullable = false)
     String date;
+    @Column(nullable = false)
     String startHour;
+    @Column(nullable = false)
     String endHour;
+    String description;
 }
