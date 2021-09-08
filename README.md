@@ -30,7 +30,7 @@ mvn spring-boot:run
 http://localhost:4200
 ```
 
-**After this, the back-end API execution is at this link:**
+**And the back-end API execution is at this link:**
 
 ```
 http://localhost:8082/api/v1/rooms
