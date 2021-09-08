@@ -3,7 +3,7 @@
 
 Created because of the proposed project by Digital Innovation Inc., to create a meeting rooms CRUD application .
 
-The front-end part was made with Angular, SCSS, Angular Material and Typescript. The back-end part was made with Java, Spring boot and H2 database.
+To create the front-end, I used Angular, SCSS, Angular Material, and Typescript. And the back-end part, I used with Java, Spring boot, and H2 database.
 
 
 **To execute the front-end part script in terminal:**
